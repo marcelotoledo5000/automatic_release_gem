@@ -34,7 +34,6 @@ jobs:
             bundle exec rake release
 
       - name: Release Gem
-        if: contains(github.ref, 'refs/tags/v')
         uses: cadwallion/publish-rubygems-action@master
         env:
           GITHUB_TOKEN: ${{secrets.BUNDLE_GITHUB__COM}}
