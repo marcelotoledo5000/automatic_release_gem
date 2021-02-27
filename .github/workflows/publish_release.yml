@@ -40,6 +40,6 @@ jobs:
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_BUMP_RELEASE}}
           RELEASE_COMMAND: |
             gem install bundler
-            git config --global user.email 'marcelotoledo5000@gmail.com'
-            git config --global user.name 'Marcelo Toledo - Automated Release'
+            git config --global user.email "marcelotoledo5000@gmail.com"
+            git config --global user.name "Marcelo Toledo - Automated Release"
             bundle exec rake release
