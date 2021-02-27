@@ -7,25 +7,20 @@ on:
     tags:
       - v*
 jobs:
-  build:
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-
-      - uses: marceloprado/has-changed-path@v1
-        id: changed-version
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        with:
-          paths: lib/miga/version.rb
 
       - name: Release Gem
-        uses: cadwallion/publish-rubygems-action@master
+        uses: discourse/publish-rubygems-action@v2-beta
         env:
           GITHUB_TOKEN: ${{secrets.BUNDLE_GITHUB__COM}}
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_BUMP_RELEASE}}
+          GIT_EMAIL: marcelotoledo5000@gmail.com
+          GIT_NAME: 'Marcelo Toledo - Automated Release'
           RELEASE_COMMAND: |
             gem install bundler
             bundle exec rake release
