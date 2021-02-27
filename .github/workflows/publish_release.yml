@@ -11,14 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
-      - name: Release Gem
-        if: contains(github.ref, 'refs/tags/v')
+      - uses: marceloprado/has-changed-path@v1
+        id: changed-version
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        with:
+          paths: lib/miga/version.rb
+
+      - name: Tag and deploy
+        if: steps.changed-version.outputs.changed == 'true'
         uses: cadwallion/publish-rubygems-action@master
         env:
-          GITHUB_TOKEN: ${{secrets.BUNDLE_GITHUB__COM}}
-          RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_BUMP_RELEASE}}
+          GITHUB_TOKEN: "${{ secrets.BUNDLE_GITHUB__COM }}"
+          RUBYGEMS_API_KEY: "${{ secrets.RUBYGEMS_BUMP_RELEASE }}"
           RELEASE_COMMAND: |
             gem install bundler
             git config --global user.email 'marcelotoledo5000@gmail.com'
