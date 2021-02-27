@@ -21,18 +21,6 @@ jobs:
         with:
           paths: lib/miga/version.rb
 
-      - name: Tag and deploy
-        if: steps.changed-version.outputs.changed == 'true'
-        uses: cadwallion/publish-rubygems-action@master
-        env:
-          GITHUB_TOKEN: "${{ secrets.BUNDLE_GITHUB__COM }}"
-          RUBYGEMS_API_KEY: "${{ secrets.RUBYGEMS_BUMP_RELEASE }}"
-          RELEASE_COMMAND: |
-            gem install bundler
-            git config --global user.email 'marcelotoledo5000@gmail.com'
-            git config --global user.name 'Marcelo Toledo - Automated Release'
-            bundle exec rake release
-
       - name: Release Gem
         uses: cadwallion/publish-rubygems-action@master
         env:
@@ -40,6 +28,4 @@ jobs:
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_BUMP_RELEASE}}
           RELEASE_COMMAND: |
             gem install bundler
-            git config --global user.email "marcelotoledo5000@gmail.com"
-            git config --global user.name "Marcelo Toledo - Automated Release"
             bundle exec rake release
