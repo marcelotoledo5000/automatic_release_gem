@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'To test automatic publication of a gem by GitHub-Actions.'
   spec.homepage      = 'https://github.com/marcelotoledo5000/automatic_release_gem'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.5.3')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.3.0')
 
   # spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
