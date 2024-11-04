@@ -8,14 +8,12 @@ on:
       - v*
 jobs:
   publish:
-    # if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Release Gem
-        # if: contains(github.ref, 'refs/tags/v')
         uses: marcelotoledo5000/publish-rubygems-action@master
         env:
           GITHUB_TOKEN: ${{secrets.BUNDLE_GITHUB__COM}}
