@@ -1,4 +1,10 @@
-# automatic_release_gem 0.1.8 (Mai 25, 2024)
+# automatic_release_gem 0.1.9 (Nov 04, 2024)
+
+* Bump Gems
+
+  *Marcelo Toledo*
+
+## automatic_release_gem 0.1.8 (Mai 25, 2024)
 
 * Update CI
 
